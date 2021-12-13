@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function building()
     {
-        return $this->belongsTo(Building::class, 'building_id');
+        return $this->belongsTo(Building::class, 'building_code');
     }
 
     public function reports()
