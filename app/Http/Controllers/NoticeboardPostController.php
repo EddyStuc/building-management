@@ -14,12 +14,19 @@ class NoticeboardPostController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('noticeboard.create');
+    }
+
     public function show(NoticeboardPost $noticeboardpost)
     {
         return view('noticeboard.show', [
             'noticeboardpost' => $noticeboardpost
         ]);
     }
+
+
 
 }
 // request()->user()->building_code

@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="col-span-8">
-                            <div class="hidden lg:flex justify-between mb-6">
+                            <div class="flex justify-between mb-6">
                                 <a href="/noticeboard">
 
                                     Back to Noticeboard

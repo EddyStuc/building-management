@@ -2,15 +2,17 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\NoticeboardPostController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->middleware(['guest'])->name('welcome');
 
-Route::get('/noticeboard', [NoticeboardPostController::class, 'index'])->middleware(['auth'])->name('noticeboard');
+Route::get('noticeboard', [NoticeboardPostController::class, 'index'])->middleware(['auth'])->name('noticeboard');
 Route::get('noticeboard/{noticeboardpost:slug}', [NoticeboardPostController::class, 'show'])->middleware(['auth']);
+
+Route::get('noticeboard/create', [NoticeboardPostController::class, 'create'])->middleware(['auth']);
+
 
 
 
