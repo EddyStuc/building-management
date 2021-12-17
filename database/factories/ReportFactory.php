@@ -17,8 +17,8 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::where('name', 'like', '%Delta%')->first()->id,
-            'building_code' => User::where('name', 'like', '%Delta%')->first()->building_code,
+            // 'user_id' => User::where('name', 'like', '%Delta%')->first()->id,
+            // 'building_code' => User::where('name', 'like', '%Delta%')->first()->building_code,
             'slug' => $this->faker->slug(),
             'title' => $this->faker->sentence(),
             'subject' => $this->faker->sentence(),

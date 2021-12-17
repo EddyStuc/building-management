@@ -22,7 +22,7 @@
 
             @if (!request()->routeIs('welcome'))
             <div class="w-1/2 text-right mt-6">
-                <x-a-link-button>
+                <x-a-link-button :href="route('welcome')">
                     Home
                 </x-a-link-button>
             </div>

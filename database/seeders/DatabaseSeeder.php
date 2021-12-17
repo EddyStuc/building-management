@@ -18,7 +18,15 @@ class DatabaseSeeder extends Seeder
     {
         Building::factory(10)->create();
 
-        User::factory(10)->create();
+        $users = User::factory(10)->create();
+
+        foreach ($users as $user) {
+            Report::factory()
+                ->create([
+                    'user_id' => $user->id,
+                    'building_code' => $user->building_code,
+                ]);
+        }
 
     }
 }

@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\NoticeboardPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class NoticeboardPostController extends Controller
 {
     public function index()
     {
-        return view('noticeboard.index', [
-            'noticeboardposts' => NoticeboardPost::where('building_code', request()->user()->building_code)->paginate(5)
-        ]);
+        $noticeboardPosts = NoticeboardPost::where('building_code', Auth::user()->building_code)->paginate(5);
+        return view('noticeboard.index', compact('noticeboardPosts'));
+
     }
 
     public function create()
@@ -19,15 +21,18 @@ class NoticeboardPostController extends Controller
         return view('noticeboard.create');
     }
 
-    public function show(NoticeboardPost $noticeboardpost)
+    /**
+     * show Noticeboard Post page
+     *
+     * @param  string $noticeboardPost
+     * @return View
+     */
+    public function show(NoticeboardPost $noticeboardPost): View
     {
-        return view('noticeboard.show', [
-            'noticeboardpost' => $noticeboardpost
-        ]);
+        return view('noticeboard.show', compact('noticeboardPost'));
     }
 
 
-
 }
-// request()->user()->building_code
+
 

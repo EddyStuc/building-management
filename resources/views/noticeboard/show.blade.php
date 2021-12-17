@@ -13,13 +13,13 @@
                         <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
 
                             <p class="mt-4 block text-gray-400 text-xs">
-                                Published <time>{{ $noticeboardpost->created_at->diffForHumans() }}</time>
+                                Published <time>{{ $noticeboardPost->created_at->diffForHumans() }}</time>
                             </p>
 
                             <div class="flex items-center lg:justify-center text-sm mt-4">
                                 <div class="ml-3 text-left">
                                     <h5 class="font-bold">
-                                        {{ $noticeboardpost->author->name }}
+                                        {{ $noticeboardPost->author->name }}
                                     </h5>
                                 </div>
                             </div>
@@ -28,18 +28,16 @@
                         <div class="col-span-8">
                             <div class="flex justify-between mb-6">
                                 <a href="/noticeboard">
-
                                     Back to Noticeboard
                                 </a>
-
                             </div>
 
                             <h1 class="font-bold text-3xl lg:text-4xl mb-10">
-                                {{ $noticeboardpost->title }}
+                                {{ $noticeboardPost->title }}
                             </h1>
 
                             <div class="space-y-4 lg:text-lg leading-loose">
-                                {!! $noticeboardpost->body !!}
+                                {!! $noticeboardPost->body !!}
                             </div>
                         </div>
                     </article>

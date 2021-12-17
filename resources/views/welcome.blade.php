@@ -11,10 +11,10 @@
             </p>
 
             <div class="inline-flex">
-                <x-a-link-button name="login">
+                <x-a-link-button :href="route('login')">
                     Log in
                 </x-a-link-button>
-                <x-a-link-button name="register">
+                <x-a-link-button :href="route('register')">
                     Register
                 </x-a-link-button>
             </div>

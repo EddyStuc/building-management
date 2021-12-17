@@ -17,7 +17,7 @@ class BuildingFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'individual_properties_at_address' => $this->faker->numberBetween(1, 10),
-            'building_code' => $this->faker->unique()->numberBetween(1,100),
+            'building_code' => $this->faker->unique()->numberBetween(10000,99999),
         ];
     }
 }
