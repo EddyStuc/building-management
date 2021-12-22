@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNoticeboardPostsTable extends Migration
+class CreateContactMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateNoticeboardPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('noticeboard_posts', function (Blueprint $table) {
+        Schema::create('contact_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('building_id')->constrained('buildings')->references('id');
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
-            $table->string('title');
+            $table->string('name');
+            $table->string('phone');
             $table->string('slug')->unique();
             $table->string('subject');
-            $table->text('body');
+            $table->text('message');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ class CreateNoticeboardPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('noticeboard_posts');
+        Schema::dropIfExists('contact_messages');
     }
 }

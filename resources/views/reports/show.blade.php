@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Noticeboard') }}
+            {{ __('Building Report') }}
         </h2>
     </x-slot>
 
@@ -13,13 +13,13 @@
                         <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
 
                             <p class="mt-4 block text-gray-400 text-xs">
-                                Published <time>{{ $noticeboardPost->created_at->diffForHumans() }}</time>
+                                Published <time>{{ $report->created_at->diffForHumans() }}</time>
                             </p>
 
                             <div class="flex items-center lg:justify-center text-sm mt-4">
                                 <div class="ml-3 text-left">
                                     <h5 class="font-bold">
-                                        {{ $noticeboardPost->author->name }}
+                                        {{ $report->author->name }}
                                     </h5>
                                 </div>
                             </div>
@@ -27,20 +27,27 @@
 
                         <div class="col-span-8">
                             <div class="flex justify-between mb-6">
-                                <x-a-link-button :href="route('noticeboard')">
+                                <x-a-link-button :href="route('reports')">
                                 <x-icon name="left-arrow" />
-                                    Back to noticeboard
+                                Back to reports
                                 </x-a-link-button>
                             </div>
 
                             <h1 class="font-bold text-3xl lg:text-4xl mb-10">
-                                {{ $noticeboardPost->title }}
+                                {{ $report->title }}
                             </h1>
 
                             <div class="space-y-4 lg:text-lg leading-loose">
-                                {!! nl2br($noticeboardPost->body) !!}
+                                {!! nl2br($report->body) !!}
                             </div>
                         </div>
+                        <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                            @include('reports._add-comment')
+
+                            @foreach ($report->comments->reverse() as $comment)
+                                <x-post-comment  :comment="$comment" />
+                            @endforeach
+                        </section>
                     </article>
                 </div>
             </div>

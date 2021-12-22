@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class NoticeBoardPostFactory extends Factory
+class ContactMessageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,9 +15,9 @@ class NoticeBoardPostFactory extends Factory
     {
         return [
             'slug' => $this->faker->slug(),
-            'title' => $this->faker->sentence(),
             'subject' => $this->faker->sentence(),
-            'body' => collect($this->faker->paragraphs(6))->map(fn($item) => "<p>{$item}</p>")->implode(''),
+            'message' => collect($this->faker->paragraphs(6))->map(fn($item) => "<p>{$item}</p>")->implode(''),
+            'phone' => $this->faker->phoneNumber()
         ];
     }
 }

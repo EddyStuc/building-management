@@ -5,7 +5,7 @@
       @foreach ($noticeboardPosts as $noticeboardPost)
          <x-noticeboardPost-card
          :noticeboardPost="$noticeboardPost"
-         class="{{ $loop->iteration < 3 ? 'col-span-3' : 'col-span-2' }}"
+         class="col-span-2"
          />
       @endforeach
    </div>

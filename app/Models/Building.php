@@ -18,4 +18,9 @@ class Building extends Model
     {
         return $this->hasMany(User::class, 'user_id');
     }
+
+    public function posts()
+    {
+        return $this->hasMany(NoticeboardPost::class);
+    }
 }

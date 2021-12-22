@@ -11,11 +11,11 @@
                         {{ __('Noticeboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('noticeboard')" :active="request()->routeIs('')">
+                    <x-nav-link :href="route('reports')" :active="request()->routeIs('reports')">
                         {{ __('Building Reports') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('noticeboard')" :active="request()->routeIs('')">
+                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                         {{ __('Contact Management') }}
                     </x-nav-link>
                 </div>
@@ -47,6 +47,9 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        @admin
+                            <x-dropdown-link href="/admin/noticeboard" :active="request()->is('admin/noticeboard')">Admin: Noticeboard</x-dropdown-item>
+                        @endadmin
                     </x-slot>
                 </x-dropdown>
             </div>

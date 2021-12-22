@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class NoticeboardPost extends Model
 {
@@ -31,6 +32,7 @@ class NoticeboardPost extends Model
 
     public function building()
     {
-        return $this->belongsTo(Building::class, 'building_code');
+        return $this->belongsTo(Building::class);
     }
+
 }

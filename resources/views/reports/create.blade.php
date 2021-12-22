@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between align-middle">
             <h2 class="font-semibold text-xl text-gray-800">
-                {{ __('Create new noticeboard post')  }}
+                {{ __('Create new building report')  }}
             </h2>
         </div>
     </x-slot>
@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-form.layout action="{{ route('noticeboard')}}">
+                    <x-form.layout action="{{ route('reports') }}">
 
                         <x-form.input name="title" />
                         <x-form.input name="slug" />

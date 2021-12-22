@@ -3,49 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\NoticeboardPost;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
-class NoticeboardPostController extends Controller
+class AdminNoticeboardController extends Controller
 {
     /**
-     * Show main Noticeboard
+     * index
      *
      * @return View
      */
-    public function index():View
+    public function index(): View
     {
-        $noticeboardPosts = Auth::user()->building->posts()->latest()->paginate(9);
-        return view('noticeboard.index', compact('noticeboardPosts'));
+        $noticeboardPosts = NoticeboardPost::all();
+        return view('admin.noticeboard.index', compact('noticeboardPosts'));
     }
 
-    /**
+     /**
      * create Noticeboard Post page
      *
      * @return View
      */
     public function create(): View
     {
-        return view('noticeboard.create');
+        return view('admin.noticeboard.create');
     }
 
     /**
-     * show Noticeboard Post page
+     * show
      *
      * @param  string $noticeboardPost
      * @return View
      */
     public function show(NoticeboardPost $noticeboardPost): View
     {
-        return view('noticeboard.show', compact('noticeboardPost'));
+        return view('admin.noticeboard.show', compact('noticeboardPost'));
     }
 
-    // /**
-    //  * store
-    //  *
-    //  * @return Redirector
-    //  */
     public function store()
     {
        $attributes = request()->validate([
@@ -60,10 +56,6 @@ class NoticeboardPostController extends Controller
 
         NoticeboardPost::create($attributes);
 
-        return redirect(route('noticeboard'))->with('success', 'Your post has been published.');
+        return redirect(route('admin.noticeboard'))->with('success', 'Your post has been published.');
     }
-
-
 }
-
-

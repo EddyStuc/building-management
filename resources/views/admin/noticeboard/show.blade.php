@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Noticeboard') }}
+            {{ __('Admin Noticeboard') }}
         </h2>
     </x-slot>
 
@@ -27,7 +27,7 @@
 
                         <div class="col-span-8">
                             <div class="flex justify-between mb-6">
-                                <x-a-link-button :href="route('noticeboard')">
+                                <x-a-link-button :href="route('admin.noticeboard')">
                                 <x-icon name="left-arrow" />
                                     Back to noticeboard
                                 </x-a-link-button>
