@@ -1,7 +1,7 @@
 @props(['name'])
 
 @if ($name === 'left-arrow')
-    <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
+    <svg width="14" height="14" viewBox="0 0 22 22" class="mr-2">
         <g fill="none" fill-rule="evenodd">
             <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
             </path>

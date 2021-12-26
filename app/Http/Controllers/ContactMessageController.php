@@ -9,11 +9,21 @@ use Illuminate\Validation\Rule;
 
 class ContactMessageController extends Controller
 {
+    /**
+     * show contact page
+     *
+     * @return void
+     */
     public function index()
     {
         return view('contact.index');
     }
 
+    /**
+     * validate and store new Contact message
+     *
+     * @return void
+     */
     public function store()
     {
         $attributes = request()->validate([

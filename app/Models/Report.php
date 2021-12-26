@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class Report extends Model
 {
@@ -12,17 +13,16 @@ class Report extends Model
 
     protected $with = ['author'];
 
-    public function scopeFilter($query, array $filters)
+    public static function displayAllIfAdmin()
     {
-        $query->when(
-            $filters['author'] ?? false,
-            fn ($query, $author) =>
-            $query->whereHas(
-                'author',
-                fn ($query) =>
-                $query->where('username', $author)
-            )
-        );
+        if (! Gate::allows('admin')) {
+            $reports = Auth::user()->building->reports()->latest()->paginate(10);
+        }
+        else {
+            $reports = Report::paginate(10);
+        }
+
+        return $reports;
     }
 
     public function author()

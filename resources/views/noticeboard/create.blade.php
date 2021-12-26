@@ -4,6 +4,10 @@
             <h2 class="font-semibold text-xl text-gray-800">
                 {{ __('Create new noticeboard post')  }}
             </h2>
+            <x-a-link-button :href="route('noticeboard')">
+                <x-icon name="left-arrow" />
+                    Back to noticeboard
+            </x-a-link-button>
         </div>
     </x-slot>
 

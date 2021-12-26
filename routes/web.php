@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminNoticeboardController;
+use App\Http\Controllers\Admin\AdminNoticeboardController;
+use App\Http\Controllers\Admin\AdminReportController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\ReportController;
@@ -27,23 +28,30 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('reports/{report:slug}/comments', [CommentsController::class, 'store'])->middleware(['auth']);
 
-Route::get('contact', [ContactMessageController::class, 'index'])->middleware(['auth'])->name('contact');
-Route::post('contact', [ContactMessageController::class, 'store'])->middleware(['auth']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('contact', [ContactMessageController::class, 'index'])->name('contact');
+    Route::post('contact', [ContactMessageController::class, 'store']);
+});
 
 Route::middleware(['can:admin'])->group(function () {
     Route::get('admin/noticeboard', [AdminNoticeboardController::class, 'index'])->name('admin.noticeboard');
     Route::get('admin/noticeboard/create', [AdminNoticeboardController::class, 'create'])->name('admin.noticeboard.create');
     Route::get('admin/noticeboard/{noticeboardPost:slug}', [AdminNoticeboardController::class, 'show']);
     Route::post('admin/noticeboard', [AdminNoticeboardController::class, 'store']);
+    Route::get('admin/noticeboard/{noticeboardPost:slug}/edit', [AdminNoticeboardController::class, 'edit']);
+    Route::patch('admin/noticeboard/{noticeboardPost:slug}', [AdminNoticeboardController::class, 'update']);
+    Route::delete('admin/noticeboard/{noticeboardPost:slug}', [AdminNoticeboardController::class, 'destroy']);
 });
 
-
-
-
-
-
-
-
+Route::middleware(['can:admin'])->group(function () {
+    Route::get('admin/reports', [AdminReportController::class, 'index'])->name('admin.reports');
+    Route::get('admin/reports/create', [AdminReportController::class, 'create'])->name('admin.reports.create');
+    Route::get('admin/reports/{report:slug}', [AdminReportController::class, 'show']);
+    Route::post('admin/reports', [AdminReportController::class, 'store']);
+    Route::get('admin/reports/{report:slug}/edit', [AdminReportController::class, 'edit']);
+    Route::patch('admin/reports/{report:slug}', [AdminReportController::class, 'update']);
+    Route::delete('admin/reports/{report:slug}', [AdminReportController::class, 'destroy']);
+});
 
 
 require __DIR__.'/auth.php';

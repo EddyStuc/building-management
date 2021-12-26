@@ -16,7 +16,7 @@ class NoticeboardPostController extends Controller
      */
     public function index():View
     {
-        $noticeboardPosts = Auth::user()->building->posts()->latest()->paginate(9);
+        $noticeboardPosts = NoticeboardPost::displayAllIfAdmin();
         return view('noticeboard.index', compact('noticeboardPosts'));
     }
 
@@ -33,7 +33,7 @@ class NoticeboardPostController extends Controller
     /**
      * show Noticeboard Post page
      *
-     * @param  string $noticeboardPost
+     * @param  mixed $noticeboardPost
      * @return View
      */
     public function show(NoticeboardPost $noticeboardPost): View
@@ -41,11 +41,12 @@ class NoticeboardPostController extends Controller
         return view('noticeboard.show', compact('noticeboardPost'));
     }
 
-    // /**
-    //  * store
-    //  *
-    //  * @return Redirector
-    //  */
+
+    /**
+     * validate and store new Noticeboard Post
+     *
+     * @return void
+     */
     public function store()
     {
        $attributes = request()->validate([

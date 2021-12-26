@@ -1,8 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Building Report') }}
-        </h2>
+        <div class="flex justify-between align-middle">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Building Report') }}
+            </h2>
+            <x-a-link-button :href="route('reports')">
+                <x-icon name="left-arrow" />
+                Back to reports
+            </x-a-link-button>
+            <x-a-link-button :href="route('reports.create')">
+                Create new report
+            </x-a-link-button>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -26,13 +35,6 @@
                         </div>
 
                         <div class="col-span-8">
-                            <div class="flex justify-between mb-6">
-                                <x-a-link-button :href="route('reports')">
-                                <x-icon name="left-arrow" />
-                                Back to reports
-                                </x-a-link-button>
-                            </div>
-
                             <h1 class="font-bold text-3xl lg:text-4xl mb-10">
                                 {{ $report->title }}
                             </h1>

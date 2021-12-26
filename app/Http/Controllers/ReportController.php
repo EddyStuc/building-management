@@ -11,18 +11,18 @@ use Illuminate\View\View;
 class ReportController extends Controller
 {
    /**
-     * Show all building reports
+     * Show all Building Reports
      *
      * @return View
      */
     public function index(): View
     {
-        $reports = Auth::user()->building->reports;
+        $reports = Report::displayAllIfAdmin();
         return view('reports.index', compact('reports'));
     }
 
     /**
-     * create Building report page
+     * create Building Report page
      *
      * @return View
      */
@@ -42,11 +42,12 @@ class ReportController extends Controller
         return view('reports.show', compact('report'));
     }
 
-    // /**
-    //  * store
-    //  *
-    //  * @return Redirector
-    //  */
+
+    /**
+     * validate and store new Building Report
+     *
+     * @return void
+     */
     public function store()
     {
        $attributes = request()->validate([

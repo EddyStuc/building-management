@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class NoticeboardPost extends Model
 {
@@ -12,17 +13,16 @@ class NoticeboardPost extends Model
 
     protected $with = ['author'];
 
-    public function scopeFilter($query, array $filters)
+    public static function displayAllIfAdmin()
     {
-        $query->when(
-            $filters['author'] ?? false,
-            fn ($query, $author) =>
-            $query->whereHas(
-                'author',
-                fn ($query) =>
-                $query->where('username', $author)
-            )
-        );
+        if (! Gate::allows('admin')) {
+            $noticeboardPosts = Auth::user()->building->posts()->latest()->paginate(9);
+        }
+        else {
+            $noticeboardPosts = NoticeboardPost::paginate(9);
+        }
+
+        return $noticeboardPosts;
     }
 
     public function author()

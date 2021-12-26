@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
+    /**
+     * validate and store Comment on a Report
+     *
+     * @param  mixed $report
+     * @return void
+     */
     public function store(Report $report)
     {
 
