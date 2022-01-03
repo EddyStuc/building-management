@@ -50,6 +50,7 @@
                         @admin
                             <x-dropdown-link :href="route('admin.noticeboard')" :active="request()->is('admin/noticeboard')">Admin: Noticeboard</x-dropdown-link>
                             <x-dropdown-link :href="route('admin.reports')" :active="request()->is('admin/reports')">Admin: Reports</x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.contactMessages')" :active="request()->is('admin/contactMessages')">Admin: Contact Messages</x-dropdown-link>
                         @endadmin
                     </x-slot>
                 </x-dropdown>

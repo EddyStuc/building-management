@@ -16,10 +16,10 @@ class NoticeboardPost extends Model
     public static function displayAllIfAdmin()
     {
         if (! Gate::allows('admin')) {
-            $noticeboardPosts = Auth::user()->building->posts()->latest()->paginate(9);
+            $noticeboardPosts = Auth::user()->building->posts()->paginate(9);
         }
         else {
-            $noticeboardPosts = NoticeboardPost::paginate(9);
+            $noticeboardPosts = NoticeboardPost::latest()->paginate(9);
         }
 
         return $noticeboardPosts;

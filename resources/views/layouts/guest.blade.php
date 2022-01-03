@@ -20,7 +20,7 @@
         <div class="font-sans text-gray-900 antialiased">
         <div class="relative bg-white overflow-hidden h-screen">
 
-            @if (!request()->routeIs('welcome'))
+            @if (! request()->routeIs('welcome'))
             <div class="w-1/2 text-right mt-6">
                 <x-a-link-button :href="route('welcome')">
                     Home

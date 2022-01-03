@@ -24,6 +24,7 @@ class CreateContactMessagesTable extends Migration
             $table->text('message');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->boolean('answered')->default('0');
         });
     }
 

@@ -16,10 +16,10 @@ class Report extends Model
     public static function displayAllIfAdmin()
     {
         if (! Gate::allows('admin')) {
-            $reports = Auth::user()->building->reports()->latest()->paginate(10);
+            $reports = Auth::user()->building->reports()->paginate(10);
         }
         else {
-            $reports = Report::paginate(10);
+            $reports = Report::latest()->paginate(10);
         }
 
         return $reports;

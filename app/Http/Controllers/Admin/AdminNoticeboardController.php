@@ -18,7 +18,7 @@ class AdminNoticeboardController extends Controller
      */
     public function index(): View
     {
-        $noticeboardPosts = NoticeboardPost::all();
+        $noticeboardPosts = NoticeboardPost::latest()->paginate(10);
         return view('admin.noticeboard.index', compact('noticeboardPosts'));
     }
 
@@ -106,6 +106,6 @@ class AdminNoticeboardController extends Controller
     {
         $noticeboardPost->delete();
 
-        return back()->with('success', 'Post Deleted!');
+        return redirect(route('admin.noticeboard'))->with('success', 'Post Deleted!');
     }
 }

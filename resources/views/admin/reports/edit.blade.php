@@ -26,7 +26,16 @@
                         <x-form.input name="subject" :value="old('subject', $report->subject)" />
                         <x-form.textarea name="body">{{ old('body', $report->body) }}</x-form.textarea>
 
-                        <x-button>Publish</x-button>
+                        <x-button>Update</x-button>
+
+                    </x-form.layout>
+
+                    <x-form.layout action="/admin/reports/{{ $report->slug }}" method="DELETE">
+
+                        <x-button>
+                            <x-icon name="delete" />
+                        </x-button>
+
                     </x-form.layout>
                 </div>
             </div>

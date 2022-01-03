@@ -1,16 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContactMessageController;
 use App\Http\Controllers\Admin\AdminNoticeboardController;
 use App\Http\Controllers\Admin\AdminReportController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\NoticeboardPostController;
-use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [WelcomeController::class, 'index'])->middleware(['guest'])->name('welcome');
+Route::view('/', 'welcome')->middleware(['guest'])->name('welcome');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('noticeboard', [NoticeboardPostController::class, 'index'])->name('noticeboard');
@@ -51,6 +51,14 @@ Route::middleware(['can:admin'])->group(function () {
     Route::get('admin/reports/{report:slug}/edit', [AdminReportController::class, 'edit']);
     Route::patch('admin/reports/{report:slug}', [AdminReportController::class, 'update']);
     Route::delete('admin/reports/{report:slug}', [AdminReportController::class, 'destroy']);
+});
+
+Route::middleware(['can:admin'])->group(function () {
+    Route::get('admin/contactMessages', [AdminContactMessageController::class, 'index'])->name('admin.contactMessages');
+    Route::get('admin/contactMessages/{contactMessage:slug}', [AdminContactMessageController::class, 'show']);
+    Route::get('admin/contactMessages/{contactMessage:slug}/edit', [AdminContactMessageController::class, 'edit']);
+    Route::patch('admin/contactMessages/{contactMessage:slug}', [AdminContactMessageController::class, 'update']);
+    Route::delete('admin/contactMessages/{contactMessage:slug}', [AdminContactMessageController::class, 'destroy']);
 });
 
 

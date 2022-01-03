@@ -18,7 +18,7 @@ class AdminReportController extends Controller
      */
     public function index(): View
     {
-        $reports = Report::all();
+        $reports = Report::latest()->paginate(10);
         return view('admin.reports.index', compact('reports'));
     }
 
@@ -106,7 +106,7 @@ class AdminReportController extends Controller
     {
         $report->delete();
 
-        return back()->with('success', 'Report Deleted!');
+        return redirect(route('admin.reports'))->with('success', 'Report Deleted!');
 
     }
 

@@ -11,7 +11,7 @@ class Building extends Model
 
     public function reports()
     {
-        return $this->hasMany(Report::class);
+        return $this->hasMany(Report::class)->latest();
     }
 
     public function users()
@@ -21,6 +21,6 @@ class Building extends Model
 
     public function posts()
     {
-        return $this->hasMany(NoticeboardPost::class);
+        return $this->hasMany(NoticeboardPost::class)->latest();
     }
 }
