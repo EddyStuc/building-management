@@ -45,7 +45,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-semibold text-gray-900 hover:text-blue-400">
-                                                        <a href="/admin/noticeboard/{{ $noticeboardPost->slug }}">
+                                                        <a href="{{ route('admin.noticeboard.show', $noticeboardPost->slug) }}">
                                                             {{ $noticeboardPost->title }}
                                                         </a>
                                                     </div>
@@ -81,11 +81,11 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="/admin/noticeboard/{{ $noticeboardPost->slug}}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                                    <a href="{{ route('admin.noticeboard.edit', $noticeboardPost->slug) }}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <x-form.layout action="/admin/noticeboard/{{ $noticeboardPost->slug }}" method="DELETE">
+                                                    <x-form.layout action="{{ route('admin.noticeboard.delete', $noticeboardPost->slug) }}" method="DELETE">
 
                                                         <button class="text-xs text-red-400">
                                                             <x-icon name="delete" />

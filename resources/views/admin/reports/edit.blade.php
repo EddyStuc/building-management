@@ -17,9 +17,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-form.layout action="/admin/reports/{{ $report->slug }}" method="PATCH">
+                    <x-form.layout action="{{ route('admin.reports.update', $report->slug) }}" method="PATCH">
 
                         <x-form.input name="title" :value="old('title', $report->title)" />
                         <x-form.input name="slug" :value="old('slug', $report->slug)" />
@@ -30,7 +30,7 @@
 
                     </x-form.layout>
 
-                    <x-form.layout action="/admin/reports/{{ $report->slug }}" method="DELETE">
+                    <x-form.layout action="{{ route('admin.reports.delete', $report->slug) }}" method="DELETE">
 
                         <x-button>
                             <x-icon name="delete" />

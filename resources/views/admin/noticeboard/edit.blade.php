@@ -19,7 +19,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-form.layout action="/admin/noticeboard/{{ $noticeboardPost->slug }}" method="PATCH">
+                    <x-form.layout action="{{ route('admin.noticeboard.update', $noticeboardPost->slug) }}" method="PATCH">
 
                         <x-form.input name="title" :value="old('title', $noticeboardPost->title)" />
                         <x-form.input name="slug" :value="old('slug', $noticeboardPost->slug)" />
@@ -29,7 +29,7 @@
                         <x-button>Update</x-button>
                     </x-form.layout>
 
-                    <x-form.layout action="/admin/noticeboard/{{ $noticeboardPost->slug }}" method="DELETE">
+                    <x-form.layout action="{{ route('admin.noticeboard.delete', $noticeboardPost->slug) }}" method="DELETE">
 
                         <x-button>
                             <x-icon name="delete" />

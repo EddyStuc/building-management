@@ -1,4 +1,4 @@
-<form action="/reports/{{ $report->slug }}/comments" method="POST">
+<form action="{{ route('report.comment', $report->slug) }}" method="POST">
     @csrf
 
     <header class="flex items-center">

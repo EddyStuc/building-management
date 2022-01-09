@@ -42,7 +42,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-semibold text-gray-900 hover:text-blue-400">
-                                                        <a href="/admin/contactMessages/{{ $contactMessage->slug }}">
+                                                        <a href="{{ route('admin.contactMessages.show', $contactMessage->slug) }}">
                                                             {{ $contactMessage->subject }}
                                                         </a>
                                                     </div>
@@ -81,10 +81,10 @@
                                                     </td>
                                                 @endif
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="/admin/contactMessages/{{ $contactMessage->slug }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                                    <a href="{{ route('admin.contactMessages.edit', $contactMessage->slug) }}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <x-form.layout action="/admin/contactMessages/{{ $contactMessage->slug }}" method="DELETE">
+                                                    <x-form.layout action="{{ route('admin.contactMessages.delete', $contactMessage->slug) }}" method="DELETE">
 
                                                         <button class="text-xs text-red-500">
                                                             <x-icon name="delete" />

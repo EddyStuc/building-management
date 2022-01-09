@@ -39,7 +39,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900 hover:text-blue-400">
-                                                        <a href="/reports/{{ $report->slug }}">
+                                                        <a href="{{ route('reports.show', $report->slug) }}">
                                                             {{ $report->title }}
                                                         </a>
                                                     </div>

@@ -15,7 +15,7 @@ class CreateNoticeboardPostsTable extends Migration
     {
         Schema::create('noticeboard_posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('building_id')->constrained('buildings')->references('id');
+            $table->foreignId('building_id')->constrained('buildings');
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->string('title');
             $table->string('slug')->unique();

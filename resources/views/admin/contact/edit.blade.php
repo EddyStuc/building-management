@@ -15,7 +15,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-form.layout action="/admin/contactMessages/{{ $contactMessage->slug }}" method="PATCH">
+                    <x-form.layout action="{{ route('admin.contactMessages.update', $contactMessage->slug) }}" method="PATCH">
 
                         <x-form.input name="name" :value="old('name', $contactMessage->name)" />
                         <x-form.input name="phone" :value="old('phone', $contactMessage->phone)" />
@@ -35,7 +35,7 @@
                         <x-button>Update</x-button>
 
                     </x-form.layout>
-                    <x-form.layout action="/admin/contactMessages/{{ $contactMessage->slug }}" method="DELETE">
+                    <x-form.layout action="{{ route('admin.contactMessages.delete', $contactMessage->slug) }}" method="DELETE">
 
                         <x-button>
                             <x-icon name="delete"/>

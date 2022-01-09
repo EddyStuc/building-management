@@ -7,11 +7,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('noticeboard')" :active="request()->routeIs('noticeboard')">
+                    <x-nav-link :href="route('noticeboard')" :active="request()->routeIs('noticeboard*')">
                         {{ __('Noticeboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('reports')" :active="request()->routeIs('reports')">
+                    <x-nav-link :href="route('reports')" :active="request()->routeIs('reports*')">
                         {{ __('Building Reports') }}
                     </x-nav-link>
 
@@ -48,9 +48,9 @@
                             </x-dropdown-link>
                         </form>
                         @admin
-                            <x-dropdown-link :href="route('admin.noticeboard')" :active="request()->is('admin/noticeboard')">Admin: Noticeboard</x-dropdown-link>
-                            <x-dropdown-link :href="route('admin.reports')" :active="request()->is('admin/reports')">Admin: Reports</x-dropdown-link>
-                            <x-dropdown-link :href="route('admin.contactMessages')" :active="request()->is('admin/contactMessages')">Admin: Contact Messages</x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.noticeboard')" :active="request()->routeIs('admin.noticeboard*')">Admin: Noticeboard</x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.reports')" :active="request()->routeIs('admin.reports*')">Admin: Reports</x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.contactMessages')" :active="request()->routeIs('admin.contactMessages*')">Admin: Contact Messages</x-dropdown-link>
                         @endadmin
                     </x-slot>
                 </x-dropdown>

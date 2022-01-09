@@ -45,7 +45,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-semibold text-gray-900 hover:text-blue-400">
-                                                        <a href="/admin/reports/{{ $report->slug }}">
+                                                        <a href="{{ route('admin.reports.show', $report->slug) }}">
                                                             {{ $report->title }}
                                                         </a>
                                                     </div>
@@ -81,11 +81,11 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="/admin/reports/{{ $report->slug}}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                                    <a href="{{ route('admin.reports.edit', $report->slug) }}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <x-form.layout action="/admin/reports/{{ $report->slug }}" method="DELETE">
+                                                    <x-form.layout action="{{ route('admin.reports.delete', $report->slug) }}" method="DELETE">
 
                                                         <button class="text-xs text-red-500">
                                                             <x-icon name="delete" />

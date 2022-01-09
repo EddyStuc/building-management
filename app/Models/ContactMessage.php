@@ -11,11 +11,21 @@ class ContactMessage extends Model
 
     protected $with = ['author'];
 
+     /**
+     * Relationship to the author that created
+     *
+     * @return void
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * Relationship to building that message belongs to
+     *
+     * @return void
+     */
     public function building()
     {
         return $this->belongsTo(Building::class);

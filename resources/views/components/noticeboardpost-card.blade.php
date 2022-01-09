@@ -6,7 +6,7 @@
             <header>
                 <div>
                     <h1 class="text-3xl font-bold border-b-2">
-                       <a href="/noticeboard/{{ $noticeboardPost->slug }}">
+                       <a href="{{ route('noticeboard.show', $noticeboardPost->slug) }}">
                            {{ $noticeboardPost->title }}
                         </a>
                     </h1>

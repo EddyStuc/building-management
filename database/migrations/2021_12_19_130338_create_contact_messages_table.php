@@ -15,7 +15,7 @@ class CreateContactMessagesTable extends Migration
     {
         Schema::create('contact_messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('building_id')->constrained('buildings')->references('id');
+            $table->foreignId('building_id')->constrained('buildings');
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->string('name');
             $table->string('phone');

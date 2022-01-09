@@ -25,6 +25,6 @@ class CommentsController extends Controller
             'body' => request('body')
         ]);
 
-        return back();
+        return back()->with('success', 'Comment posted');
     }
 }

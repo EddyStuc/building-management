@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $with = ['building'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,13 +44,43 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Relationship to the building a user is in
+     *
+     * @return void
+     */
     public function building()
     {
         return $this->belongsTo(Building::class);
     }
 
+    /**
+     * Relationship to the reports a user has made
+     *
+     * @return void
+     */
     public function reports()
     {
         return $this->hasMany(Report::class)->latest();
+    }
+
+     /**
+     * Relationship to the posts a user has made
+     *
+     * @return void
+     */
+    public function posts()
+    {
+        return $this->hasMany(NoticeboardPost::class)->latest();
+    }
+
+    /**
+     * Relationship to comments a user has made
+     *
+     * @return void
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
