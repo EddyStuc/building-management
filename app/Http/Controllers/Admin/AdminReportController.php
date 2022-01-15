@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReportRequest;
 use App\Models\Report;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -48,15 +48,10 @@ class AdminReportController extends Controller
      *
      * @return void
      */
-    public function store()
+    public function store(StoreReportRequest $request)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('reports', 'slug')],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
 
+        $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
 
@@ -107,7 +102,5 @@ class AdminReportController extends Controller
         $report->delete();
 
         return redirect(route('admin.reports'))->with('success', 'Report Deleted!');
-
     }
-
 }

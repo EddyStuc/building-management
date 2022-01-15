@@ -4,6 +4,11 @@
             <h2 class="font-semibold text-xl text-gray-800">
                 {{ __('Noticeboard')  }}
             </h2>
+
+            <x-form.layout method="GET" action="{{ route('noticeboard') }}">
+                <x-form.search />
+            </x-form.layout>
+
             <x-a-link-button :href="route('noticeboard.create')">
                 Create new post
             </x-a-link-button>

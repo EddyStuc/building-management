@@ -4,6 +4,11 @@
             <h2 class="font-semibold text-xl text-gray-800">
                 {{ __('Building Reports')  }}
             </h2>
+
+            <x-form.layout method="GET" action="{{ route('reports') }}">
+                <x-form.search />
+            </x-form.layout>
+
             <x-a-link-button :href="route('reports.create')">
                 Create new report
             </x-a-link-button>

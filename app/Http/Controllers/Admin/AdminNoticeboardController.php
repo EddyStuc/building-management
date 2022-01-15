@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNoticeboardPostRequest;
 use App\Models\NoticeboardPost;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -48,15 +48,10 @@ class AdminNoticeboardController extends Controller
      *
      * @return void
      */
-    public function store()
+    public function store(StoreNoticeboardPostRequest $request)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('noticeboard_posts', 'slug')],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
 
+        $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
 

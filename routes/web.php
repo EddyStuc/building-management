@@ -17,6 +17,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('noticeboard/create', [NoticeboardPostController::class, 'create'])->name('noticeboard.create');
     Route::get('noticeboard/{noticeboardPost:slug}', [NoticeboardPostController::class, 'show'])->name('noticeboard.show');
     Route::post('noticeboard', [NoticeboardPostController::class, 'store']);
+    Route::get('noticeboard/{noticeboardPost:slug}/edit', [NoticeboardPostController::class, 'edit'])->name('noticeboard.edit');
+    Route::patch('noticeboard/{noticeboardPost:slug}', [NoticeboardPostController::class, 'update'])->name('noticeboard.update');
+    Route::delete('noticeboard/{noticeboardPost:slug}', [NoticeboardPostController::class, 'destroy'])->name('noticeboard.delete');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -24,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('reports/create', [ReportController::class, 'create'])->name('reports.create');
     Route::get('reports/{report:slug}', [ReportController::class, 'show'])->name('reports.show');
     Route::post('reports', [ReportController::class, 'store']);
+    Route::delete('reports/{report:slug}', [ReportController::class, 'destroy'])->name('reports.delete');
+    Route::get('reports/{report:slug}/edit', [ReportController::class, 'edit'])->name('reports.edit');
+    Route::patch('reports/{report:slug}', [ReportController::class, 'update'])->name('reports.update');
 });
 
 Route::post('reports/{report:slug}/comments', [CommentsController::class, 'store'])->middleware(['auth'])->name('report.comment');
@@ -61,6 +67,4 @@ Route::middleware(['can:admin'])->group(function () {
     Route::delete('admin/contactMessages/{contactMessage:slug}', [AdminContactMessageController::class, 'destroy'])->name('admin.contactMessages.delete');
 });
 
-
 require __DIR__.'/auth.php';
-

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReportRequest;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,27 +44,68 @@ class ReportController extends Controller
         return view('reports.show', compact('report'));
     }
 
-
     /**
      * validate and store new Building Report
      *
      * @return void
      */
-    public function store()
+    public function store(StoreReportRequest $request)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('reports', 'slug')],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
 
+        $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
 
         Report::create($attributes);
 
         return redirect(route('reports'))->with('success', 'Your report has been published.');
+    }
+
+    /**
+     * edit page for individual Reports
+     *
+     * @param  mixed $report
+     * @return void
+     */
+    public function edit(Report $report)
+    {
+        if (! Gate::allows('allowEdit', $report)) {
+            abort(403);
+        }
+        return view('reports.edit', ['report' => $report]);
+    }
+
+    /**
+     * validate changes and update Reports
+     *
+     * @param  mixed $report
+     * @return void
+     */
+    public function update(Report $report)
+    {
+       $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('reports', 'slug')->ignore($report->id)],
+            'subject' => 'required',
+            'body' => 'required',
+        ]);
+
+        $report->update($attributes);
+
+        return redirect(route('reports'))->with('success', 'Report Updated!');
+    }
+
+     /**
+     * delete Reports
+     *
+     * @param  mixed $report
+     * @return void
+     */
+    public function destroy(Report $report)
+    {
+        $report->delete();
+
+        return redirect(route('reports'))->with('success', 'Report Deleted!');
     }
 
 }

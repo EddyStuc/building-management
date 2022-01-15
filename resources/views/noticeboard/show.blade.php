@@ -18,7 +18,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <article class="max-w-4xl mx-auto grid grid-cols-12 gap-x-10">
+
+                    @allowEdit(Auth::user(), $noticeboardPost)
+                        <div class="flex w-full justify-end">
+                            <x-a-link-button href="{{ route('noticeboard.edit', $noticeboardPost->slug) }}">
+                                Edit your post
+                            </x-a-link-button>
+                        </div>
+                    @endallowEdit
+
+                    <article class="max-w-4xl mx-auto grid grid-cols-12 gap-x-10 mt-4">
                         <div class="col-span-4 text-center pt-14 mb-10">
 
                             <p class="mt-4 block text-gray-400 text-xs">

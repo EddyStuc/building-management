@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 w-1/2">
-            <img class="h-full w-full object-cover" src="{{ asset('storage/building2.jpg') }}" alt="">
+            <img class="h-full w-full object-cover" src="/images/building2.jpg" alt="">
             </div>
         </div>
         </div>

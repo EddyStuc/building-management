@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreNoticeboardPostRequest;
 use App\Models\NoticeboardPost;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -14,7 +16,7 @@ class NoticeboardPostController extends Controller
      *
      * @return View
      */
-    public function index():View
+    public function index(): View
     {
         $noticeboardPosts = NoticeboardPost::displayAllIfAdmin();
         return view('noticeboard.index', compact('noticeboardPosts'));
@@ -47,15 +49,10 @@ class NoticeboardPostController extends Controller
      *
      * @return void
      */
-    public function store()
+    public function store(StoreNoticeboardPostRequest $request)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('noticeboard_posts', 'slug')],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
 
+        $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
 
@@ -64,7 +61,50 @@ class NoticeboardPostController extends Controller
         return redirect(route('noticeboard'))->with('success', 'Your post has been published.');
     }
 
+    /**
+     * edit page for individual posts
+     *
+     * @param  mixed $noticeboardPost
+     * @return void
+     */
+    public function edit(NoticeboardPost $noticeboardPost)
+    {
+        if (! Gate::allows('allowEdit', $noticeboardPost)) {
+            abort(403);
+        }
+        return view('noticeboard.edit', ['noticeboardPost' => $noticeboardPost]);
+    }
 
+    /**
+     * validate changes and update Noticeboard Posts
+     *
+     * @param  mixed $noticeboardPost
+     * @return void
+     */
+    public function update(NoticeboardPost $noticeboardPost)
+    {
+       $attributes = request()->validate([
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('noticeboard_posts', 'slug')->ignore($noticeboardPost->id)],
+            'subject' => 'required',
+            'body' => 'required',
+        ]);
+
+        $noticeboardPost->update($attributes);
+
+        return redirect(route('noticeboard'))->with('success', 'Post Updated!');
+    }
+
+    /**
+     * delete Noticeboard Posts
+     *
+     * @param  mixed $noticeboardPost
+     * @return void
+     */
+    public function destroy(NoticeboardPost $noticeboardPost)
+    {
+        $noticeboardPost->delete();
+
+        return redirect(route('noticeboard'))->with('success', 'Post Deleted!');
+    }
 }
-
-

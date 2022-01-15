@@ -83,4 +83,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    /**
+     * Relationship to contact messages a user has sent
+     *
+     * @return void
+     */
+    public function messages()
+    {
+        return $this->hasMany(ContactMessage::class);
+    }
 }

@@ -13,6 +13,20 @@ class NoticeboardPost extends Model
 
     protected $with = ['author'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn ($query, $search) =>
+            $query->where(fn($query) =>
+                $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('subject', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%')
+                ->orWhereHas('author', function($query) use ($search) {
+                    return $query->where('name', 'LIKE', '%' . $search . '%');}
+                    )
+            )
+        );
+    }
+
     /**
      * Verifies if current user is admin or not to view all data
      *
@@ -20,7 +34,8 @@ class NoticeboardPost extends Model
      */
     public static function displayAllIfAdmin()
     {
-        return Gate::allows('admin') ? NoticeboardPost::latest()->paginate(9) : Auth::user()->building->posts()->paginate(9);
+        return Gate::allows('admin') ? NoticeboardPost::latest()->filter(request(['search']))->paginate(9)
+                                    : Auth::user()->building->posts()->filter(request(['search']))->paginate(9);
     }
 
     /**

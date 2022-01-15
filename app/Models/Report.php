@@ -13,6 +13,20 @@ class Report extends Model
 
     protected $with = ['author'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn ($query, $search) =>
+            $query->where(fn($query) =>
+                $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('subject', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%')
+                ->orWhereHas('author', function($query) use ($search) {
+                    return $query->where('name', 'LIKE', '%' . $search . '%');}
+                    )
+            )
+        );
+    }
+
     /**
      * Verifies if current user is admin or not to view all data
      *
@@ -20,7 +34,8 @@ class Report extends Model
      */
     public static function displayAllIfAdmin()
     {
-        return Gate::allows('admin') ? Report::latest()->paginate(10) : Auth::user()->building->reports()->paginate(10);
+        return Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
+                                    : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
     }
 
      /**
