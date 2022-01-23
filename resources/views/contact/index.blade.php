@@ -8,9 +8,9 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden mx-3 shadow-sm rounded-lg">
-                <div class="flex flex-col md:flex-row items-center md:items-stretch justify-center p-6 bg-white border-b border-gray-200">
+        <div class="mx-auto px-1">
+            <div class="bg-white overflow-hidden mx-1 shadow-sm rounded-lg">
+                <div class="flex flex-col md:flex-row items-center md:items-stretch justify-center p-1 md:p-6 bg-white border-b border-gray-200">
                     <div class="relative mx-2  md:pt-6 p-2 text-md lg:text-xl">
                         <div class="flex items-center m-2 py-2">
                             <x-icon name="phone" />

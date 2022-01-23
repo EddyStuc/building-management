@@ -18,7 +18,7 @@ class ContactMessageFactory extends Factory
             'subject' => $this->faker->sentence(),
             'message' => collect($this->faker->paragraphs(6))->map(fn($item) => "<p>{$item}</p>")->implode(''),
             'phone' => $this->faker->phoneNumber(),
-            'answered' => true
+            'answered' => false
         ];
     }
 }
