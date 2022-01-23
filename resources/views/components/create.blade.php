@@ -3,11 +3,11 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between align-middle">
-            <h2 class="font-semibold text-xl text-gray-800">
+            <h2 class="font-semibold text-lg text-gray-800">
                 Create new {{ $heading }}
             </h2>
             <x-a-link-button :href="route($routeTitle)">
-                <x-icon name="left-arrow" />
+                <x-icon name="left-arrow"/>
                     Back to {{ str_replace('.', ' ', $routeTitle) }}
             </x-a-link-button>
         </div>
@@ -15,7 +15,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white mx-3 overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-form.layout action="{{ route($routeTitle)}}">
 

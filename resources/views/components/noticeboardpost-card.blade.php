@@ -5,7 +5,7 @@
         <div class="flex flex-col py-6 px-5 ">
             <header>
                 <div>
-                    <h1 class="text-3xl font-bold border-b-2">
+                    <h1 class="text-2xl lg:text-3xl font-bold border-b-2">
                        <a href="{{ route('noticeboard.show', $noticeboardPost->slug) }}">
                            {{ $noticeboardPost->title }}
                         </a>

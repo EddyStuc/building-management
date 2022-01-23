@@ -1,7 +1,7 @@
 <x-guest-layout>
 
-        <div class="text-left mx-6">
-            <h1 class="text-6xl mb-6">
+        <div class="flex flex-col text-left mx-6">
+            <h1 class="text-4xl lg:text-6xl mb-6">
                 <span class="">A simple solution to</span>
                 <span class="text-blue-400">building management.</span>
             </h1>
@@ -10,11 +10,11 @@
                 testing and everything else that comes with keeping your building at the highest quality.
             </p>
 
-            <div class="inline-flex">
+            <div class="flex space-x-8">
                 <x-a-link-button :href="route('login')">
                     Log in
                 </x-a-link-button>
-                <x-a-link-button :href="route('register')">
+                <x-a-link-button :href="route('register')" class="">
                     Register
                 </x-a-link-button>
             </div>

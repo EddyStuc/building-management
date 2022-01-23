@@ -13,31 +13,30 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-        <!-- Scripts -->
-        {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     </head>
     <body class="antialiased">
         <div class="font-sans text-gray-900 antialiased">
-        <div class="relative bg-white overflow-hidden h-screen">
-
-            @if (! request()->routeIs('welcome'))
-            <div class="w-1/2 text-right mt-6">
-                <x-a-link-button :href="route('welcome')">
-                    Home
-                </x-a-link-button>
-            </div>
-            @endif
-            <div class="left-0 w-1/2 bg-white h-full flex items-center">
-                <div class="w-full px-14">
-                    {{ $slot }}
+            <div class="relative flex flex-col bg-white overflow-hidden h-screen">
+                @if (! request()->routeIs('welcome'))
+                <div class="md:w-1/2 flex justify-end mt-6 pr-4">
+                    <x-a-link-button :href="route('welcome')">
+                        Home
+                    </x-a-link-button>
+                </div>
+                @endif
+                <div class="md:left-0 md:w-1/2 bg-white h-full flex items-center">
+                    <div class="w-full px-4 md:px-14">
+                        {{ $slot }}
+                    </div>
+                </div>
+                <div class="hidden md:flex absolute inset-y-0 right-0 w-1/2">
+                    <img class="h-full w-full object-cover" src="/images/building2.jpg" alt="">
                 </div>
             </div>
-            <div class="absolute inset-y-0 right-0 w-1/2">
-            <img class="h-full w-full object-cover" src="/images/building2.jpg" alt="">
-            </div>
-        </div>
         </div>
         <x-flash />
     </body>
+
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </html>

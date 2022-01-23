@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex justify-end">
     <input type="text"
     name="search"
     placeholder="Search.."

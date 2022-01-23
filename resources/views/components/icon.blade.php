@@ -1,7 +1,7 @@
 @props(['name'])
 
 @if ($name === 'left-arrow')
-    <svg width="14" height="14" viewBox="0 0 22 22" class="mr-2">
+    <svg width="14" height="14" viewBox="0 0 22 22" class="mr-2 hidden md:inline-flex">
         <g fill="none" fill-rule="evenodd">
             <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
             </path>
@@ -9,6 +9,12 @@
                 d="M13.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z">
             </path>
         </g>
+    </svg>
+@endif
+
+@if ($name === 'down-arrow')
+    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
     </svg>
 @endif
 
@@ -52,5 +58,11 @@
 @if ($name === 'search')
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+@endif
+
+@if ($name === 'hamburger')
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
 @endif
