@@ -14,7 +14,7 @@
             </header>
 
             <div class="text-lg font-semibold mt-4 space-y-4">
-                    {{ $noticeboardPost->subject }}
+                {{ $noticeboardPost->subject }}
             </div>
             <div class="flex justify-end text-sm mt-4 space-y-4">
                 {{ $noticeboardPost->author->name }}

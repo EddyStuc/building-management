@@ -9,9 +9,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex justify-center p-6 bg-white border-b border-gray-200">
-                    <div class="relative mx-2 pt-8 px-2 text-xl">
+            <div class="bg-white overflow-hidden mx-3 shadow-sm rounded-lg">
+                <div class="flex flex-col md:flex-row items-center md:items-stretch justify-center p-6 bg-white border-b border-gray-200">
+                    <div class="relative mx-2  md:pt-6 p-2 text-md lg:text-xl">
                         <div class="flex items-center m-2 py-2">
                             <x-icon name="phone" />
                             <p class="ml-4">01752 XXXXXX</p>
@@ -26,10 +26,9 @@
                         </div>
                         <div class="flex items-center m-2 py-2">
                             <x-icon name="email" />
-                            <p class="ml-4">management@services.example</p>
+                            <p class="ml-2">management@services.example</p>
                         </div>
                         <x-icon name="bubble" />
-
                     </div>
                     <div class="mx-2 p-4 w-full bg-blue-300 rounded-2xl shadow-xl">
                         <h1 class="font-semibold">Send us a message!</h1>

@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="md:max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div class="flex h-16">
+        <div class="flex h-12 md:14 lg:h-16">
             <div class="flex w-full">
                 <!-- Navigation Links -->
                 <div class=" md:space-x-8 -my-px md:ml-10 w-full flex justify-between md:justify-start">

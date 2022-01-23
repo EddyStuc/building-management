@@ -1,22 +1,24 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between align-middle">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="hidden md:inline-block font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Building Report') }}
             </h2>
-            <x-a-link-button :href="route('reports')">
-                <x-icon name="left-arrow" />
-                Back to reports
-            </x-a-link-button>
-            <x-a-link-button :href="route('reports.create')">
-                Create new report
-            </x-a-link-button>
+            <div class="flex space-x-2 w-full justify-between md:justify-end">
+                <x-a-link-button :href="route('reports')">
+                    <x-icon name="left-arrow" />
+                    Back to reports
+                </x-a-link-button>
+                <x-a-link-button :href="route('reports.create')">
+                    Create new report
+                </x-a-link-button>
+            </div>
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white mx-3 overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
                     @allowEdit(Auth::user(), $report)
