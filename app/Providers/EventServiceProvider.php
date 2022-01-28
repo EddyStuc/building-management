@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\ContactMessageCreated;
+use App\Events\ContactMessageDeleted;
+use App\Listeners\SendContactMessageCreatedEmail;
+use App\Listeners\SendContactMessageDeletedEmail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        ContactMessageCreated::class => [
+            SendContactMessageCreatedEmail::class
+        ],
+        ContactMessageDeleted::class => [
+            SendContactMessageDeletedEmail::class
         ],
     ];
 

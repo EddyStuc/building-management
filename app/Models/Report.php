@@ -13,6 +13,13 @@ class Report extends Model
 
     protected $with = ['author'];
 
+    /**
+     * Filter to allow searching on report views
+     *
+     * @param  mixed $query
+     * @param  mixed $filters
+     * @return void
+     */
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn ($query, $search) =>
@@ -41,7 +48,7 @@ class Report extends Model
      /**
      * Relationship to the author that created
      *
-     * @return void
+     * @return belongsTo
      */
     public function author()
     {
@@ -51,7 +58,7 @@ class Report extends Model
     /**
      * Relationship to building it belongs to
      *
-     * @return void
+     * @return belongsTo
      */
     public function building()
     {
@@ -61,7 +68,7 @@ class Report extends Model
     /**
      * Relationship to comments about report
      *
-     * @return void
+     * @return hasMany
      */
     public function comments()
     {

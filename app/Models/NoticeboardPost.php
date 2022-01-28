@@ -13,6 +13,13 @@ class NoticeboardPost extends Model
 
     protected $with = ['author'];
 
+    /**
+     * Filter to allow searching on noticeboard views
+     *
+     * @param  mixed $query
+     * @param  mixed $filters
+     * @return void
+     */
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn ($query, $search) =>

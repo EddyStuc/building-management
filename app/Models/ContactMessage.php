@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Events\ContactMessageCreated;
+use App\Events\ContactMessageDeleted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +12,11 @@ class ContactMessage extends Model
     use HasFactory;
 
     protected $with = ['author'];
+
+    protected $dispatchesEvents = [
+        'created' => ContactMessageCreated::class,
+        'deleted' => ContactMessageDeleted::class,
+    ];
 
      /**
      * Relationship to the author that created
