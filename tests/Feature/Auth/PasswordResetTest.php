@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\Building;
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -22,6 +23,8 @@ class PasswordResetTest extends TestCase
     public function test_reset_password_link_can_be_requested()
     {
         Notification::fake();
+
+        $building = Building::factory()->create();
 
         $user = User::factory()->create();
 

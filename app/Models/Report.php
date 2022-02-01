@@ -34,17 +34,6 @@ class Report extends Model
         );
     }
 
-    /**
-     * Verifies if current user is admin or not to view all data
-     *
-     * @return void
-     */
-    public static function displayAllIfAdmin()
-    {
-        return Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
-                                    : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
-    }
-
      /**
      * Relationship to the author that created
      *
