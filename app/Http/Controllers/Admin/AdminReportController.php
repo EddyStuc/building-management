@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReportRequest;
+use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -50,7 +51,6 @@ class AdminReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
@@ -77,15 +77,9 @@ class AdminReportController extends Controller
      * @param  mixed $report
      * @return void
      */
-    public function update(Report $report)
+    public function update(UpdateReportRequest $request, Report $report)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('reports', 'slug')->ignore($report->id)],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
-
+        $attributes = $request->validated();
         $report->update($attributes);
 
         return redirect(route('admin.reports'))->with('success', 'Report Updated!');

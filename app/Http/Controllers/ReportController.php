@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReportRequest;
+use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,15 +84,10 @@ class ReportController extends Controller
      * @param  mixed $report
      * @return void
      */
-    public function update(Report $report)
+    public function update(UpdateReportRequest $request, Report $report)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('reports', 'slug')->ignore($report->id)],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
 
+        $attributes = $request->validated();
         $report->update($attributes);
 
         return redirect(route('reports'))->with('success', 'Report Updated!');

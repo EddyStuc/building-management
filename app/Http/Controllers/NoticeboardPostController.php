@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNoticeboardPostRequest;
+use App\Http\Requests\UpdateNoticeboardPostRequest;
 use App\Models\NoticeboardPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -53,7 +54,6 @@ class NoticeboardPostController extends Controller
      */
     public function store(StoreNoticeboardPostRequest $request)
     {
-
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
@@ -83,15 +83,9 @@ class NoticeboardPostController extends Controller
      * @param  mixed $noticeboardPost
      * @return void
      */
-    public function update(NoticeboardPost $noticeboardPost)
+    public function update(UpdateNoticeboardPostRequest $request, NoticeboardPost $noticeboardPost)
     {
-       $attributes = request()->validate([
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('noticeboard_posts', 'slug')->ignore($noticeboardPost->id)],
-            'subject' => 'required',
-            'body' => 'required',
-        ]);
-
+        $attributes = $request->validated();
         $noticeboardPost->update($attributes);
 
         return redirect(route('noticeboard'))->with('success', 'Post Updated!');
