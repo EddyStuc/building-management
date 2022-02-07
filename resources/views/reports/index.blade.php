@@ -39,7 +39,11 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($reports as $report)
-                                <tr>
+                                @if ($loop->odd)
+                                    <tr class="bg-white">
+                                @else
+                                   <tr class="bg-gray-50">
+                                @endif
                                     <td class="px-3 py-4">
                                     <div class="flex items-center">
                                         <div class="text-sm font-semibold text-gray-900 hover:text-blue-400">

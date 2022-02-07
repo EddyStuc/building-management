@@ -35,7 +35,11 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ( $contactMessages as $contactMessage )
-                                <tr>
+                                @if ($loop->odd)
+                                    <tr class="bg-white">
+                                @else
+                                    <tr class="bg-gray-50">
+                                @endif
                                     <td class="px-1 md:px-3 py-3">
                                     <div class="flex items-center">
                                         <div class="text-xs md:text-sm font-semibold text-gray-900 hover:text-blue-400">

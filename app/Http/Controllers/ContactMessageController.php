@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\ContactMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -23,16 +24,9 @@ class ContactMessageController extends Controller
      *
      * @return void
      */
-    public function store()
+    public function store(StoreContactMessageRequest $request)
     {
-        $attributes = request()->validate([
-            'name' => 'required',
-            'slug' => ['required', Rule::unique('contact_messages', 'slug')],
-            'subject' => 'required',
-            'phone' => 'required',
-            'message' => 'required',
-        ]);
-
+        $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
 

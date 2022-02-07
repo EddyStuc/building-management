@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use App\Models\Report;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -12,15 +14,11 @@ class CommentsController extends Controller
      * @param  mixed $report
      * @return void
      */
-    public function store(Report $report)
+    public function store(StoreCommentRequest $request, Report $report)
     {
-
-        request()->validate(['body' => ['required']]);
-
-        $report->comments()->create([
-            'user_id' => request()->user()->id,
-            'body' => request('body')
-        ]);
+        $attributes = $request->validated();
+        $attributes['user_id'] = Auth::user()->id;
+        $report->comments()->create($attributes);
 
         return back()->with('success', 'Comment posted');
     }
