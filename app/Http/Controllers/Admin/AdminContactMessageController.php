@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateContactMessageRequest;
 use App\Models\ContactMessage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\Rule;
@@ -49,16 +50,10 @@ class AdminContactMessageController extends Controller
      * @param  mixed $contactMessage
      * @return void
      */
-    public function update(ContactMessage $contactMessage)
+    public function update(UpdateContactMessageRequest $request, ContactMessage $contactMessage)
     {
-       $attributes = request()->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'slug' => ['required', Rule::unique('contact_messages', 'slug')->ignore($contactMessage->id)],
-            'subject' => 'required',
-            'message' => 'required',
-            'answered' => 'required'
-        ]);
+        $attributes = $request->validated();
+        $attributes['slug'] = str($request['subject'])->slug();
 
         $contactMessage->update($attributes);
 
