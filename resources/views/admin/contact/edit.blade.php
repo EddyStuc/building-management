@@ -16,7 +16,6 @@
 
             <x-form.input name="name" :value="old('name', $contactMessage->name)" />
             <x-form.input name="phone" :value="old('phone', $contactMessage->phone)" />
-            <x-form.input name="slug" :value="old('slug', $contactMessage->slug)" />
             <x-form.input name="subject" :value="old('subject', $contactMessage->subject)" />
 
             <div class="flex mt-6">

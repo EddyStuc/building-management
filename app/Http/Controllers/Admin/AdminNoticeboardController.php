@@ -23,7 +23,7 @@ class AdminNoticeboardController extends Controller
         return view('admin.noticeboard.index', compact('noticeboardPosts'));
     }
 
-     /**
+    /**
      * create Noticeboard Post page
      *
      * @return View
@@ -55,6 +55,7 @@ class AdminNoticeboardController extends Controller
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
+        $attributes['slug'] = str($request['title'])->slug();
 
         NoticeboardPost::create($attributes);
 
@@ -81,8 +82,7 @@ class AdminNoticeboardController extends Controller
     public function update(UpdateNoticeboardPostRequest $request, NoticeboardPost $noticeboardPost)
     {
         $attributes = $request->validated();
-        $noticeboardPost->update($attributes);
-
+        $attributes['slug'] = str($request['title'])->slug();
         $noticeboardPost->update($attributes);
 
         return redirect(route('admin.noticeboard'))->with('success', 'Post Updated!');

@@ -23,7 +23,7 @@ class AdminReportController extends Controller
         return view('admin.reports.index', compact('reports'));
     }
 
-     /**
+    /**
      * create admin Report page
      *
      * @return View
@@ -54,6 +54,7 @@ class AdminReportController extends Controller
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
+        $attributes['slug'] = str($request['title'])->slug();
 
         Report::create($attributes);
 
@@ -80,6 +81,7 @@ class AdminReportController extends Controller
     public function update(UpdateReportRequest $request, Report $report)
     {
         $attributes = $request->validated();
+        $attributes['slug'] = str($request['title'])->slug();
         $report->update($attributes);
 
         return redirect(route('admin.reports'))->with('success', 'Report Updated!');

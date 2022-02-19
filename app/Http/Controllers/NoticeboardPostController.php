@@ -87,8 +87,8 @@ class NoticeboardPostController extends Controller
     public function update(UpdateNoticeboardPostRequest $request, NoticeboardPost $noticeboardPost)
     {
         $attributes = $request->validated();
-        $noticeboardPost->update($attributes);
         $attributes['slug'] = str($request['title'])->slug();
+        $noticeboardPost->update($attributes);
 
         return redirect(route('noticeboard'))->with('success', 'Post Updated!');
     }
