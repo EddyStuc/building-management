@@ -25,8 +25,7 @@ class UpdateNoticeboardPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('noticeboard_posts', 'slug')->ignore($this->route('noticeboardPost')->id)],
+            'title' => ['required', Rule::unique('noticeboard_posts', 'title')->ignore($this->route('noticeboardPost')->id)],
             'subject' => 'required',
             'body' => 'required',
         ];

@@ -25,8 +25,7 @@ class StoreNoticeboardPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('noticeboard_posts', 'slug')],
+            'title' => ['required', Rule::unique('noticeboard_posts', 'title')],
             'subject' => 'required',
             'body' => 'required',
         ];

@@ -20,7 +20,6 @@
         <x-form.layout action="{{ route('noticeboard.update', $noticeboardPost->slug) }}" method="PATCH">
 
             <x-form.input name="title" :value="old('title', $noticeboardPost->title)" />
-            <x-form.input name="slug" :value="old('slug', $noticeboardPost->slug)" />
             <x-form.input name="subject" :value="old('subject', $noticeboardPost->subject)" />
             <x-form.textarea name="body">{{ old('body', $noticeboardPost->body) }}</x-form.textarea>
 

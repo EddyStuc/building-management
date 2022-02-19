@@ -57,6 +57,7 @@ class NoticeboardPostController extends Controller
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
+        $attributes['slug'] = str($request['title'])->slug();
 
         NoticeboardPost::create($attributes);
 
@@ -87,6 +88,7 @@ class NoticeboardPostController extends Controller
     {
         $attributes = $request->validated();
         $noticeboardPost->update($attributes);
+        $attributes['slug'] = str($request['title'])->slug();
 
         return redirect(route('noticeboard'))->with('success', 'Post Updated!');
     }
