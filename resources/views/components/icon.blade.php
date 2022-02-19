@@ -50,7 +50,7 @@
 @endif
 
 @if ($name === 'bubble')
-    <svg class="bottom-12 left-6 w-56 absolute text-blue-400 transform hidden md:flex" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <svg class="bottom-6 left-6 w-56 absolute text-blue-400 transform hidden md:flex" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <polygon points="0 0, 100 0, 100 75, 75 75, 75 100, 50 75, 0 75" />
     </svg>
 @endif

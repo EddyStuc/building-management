@@ -26,8 +26,7 @@ class StoreContactMessageRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'slug' => ['required', Rule::unique('contact_messages', 'slug')],
-            'subject' => 'required',
+            'subject' => ['required', Rule::unique('contact_messages', 'subject')],
             'phone' => 'required',
             'message' => 'required',
         ];

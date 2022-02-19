@@ -29,6 +29,7 @@ class ContactMessageController extends Controller
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
+        $attributes['slug'] = str($request['subject'])->slug();
 
         ContactMessage::create($attributes);
 

@@ -39,7 +39,6 @@
                                 <x-form.input name="name" />
                                 <x-form.input name="phone" />
                                 <x-form.input name="subject" />
-                                <x-form.input name="slug" />
                                 <x-form.textarea name="message" />
 
                                 <x-button class="bg-blue-500">Send Message</x-button>
