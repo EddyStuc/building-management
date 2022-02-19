@@ -17,7 +17,6 @@
         <x-form.layout action="{{ route($routeTitle)}}">
 
             <x-form.input name="title" />
-            <x-form.input name="slug" />
             <x-form.input name="subject"  />
             <x-form.textarea name="body" />
 

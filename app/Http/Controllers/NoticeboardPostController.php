@@ -20,7 +20,7 @@ class NoticeboardPostController extends Controller
     public function index(): View
     {
         $noticeboardPosts = Gate::allows('admin') ? NoticeboardPost::latest()->filter(request(['search']))->paginate(9)
-                                                : Auth::user()->building->posts()->filter(request(['search']))->paginate(9);
+            : Auth::user()->building->posts()->filter(request(['search']))->paginate(9);
 
         return view('noticeboard.index', compact('noticeboardPosts'));
     }
@@ -71,7 +71,7 @@ class NoticeboardPostController extends Controller
      */
     public function edit(NoticeboardPost $noticeboardPost)
     {
-        if (! Gate::allows('allowEdit', $noticeboardPost)) {
+        if (!Gate::allows('allowEdit', $noticeboardPost)) {
             abort(403);
         }
         return view('noticeboard.edit', ['noticeboardPost' => $noticeboardPost]);

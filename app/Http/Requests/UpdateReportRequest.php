@@ -25,8 +25,7 @@ class UpdateReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('reports', 'slug')->ignore($this->route('report')->id)],
+            'title' => ['required', Rule::unique('reports', 'title')->ignore($this->route('report')->id)],
             'subject' => 'required',
             'body' => 'required',
         ];

@@ -13,7 +13,7 @@ use Illuminate\View\View;
 
 class ReportController extends Controller
 {
-   /**
+    /**
      * Show all Building Reports
      *
      * @return View
@@ -21,7 +21,7 @@ class ReportController extends Controller
     public function index(): View
     {
         $reports = Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
-                                        : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
+            : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
 
         return view('reports.index', compact('reports'));
     }
@@ -58,6 +58,7 @@ class ReportController extends Controller
         $attributes = $request->validated();
         $attributes['user_id'] = Auth::user()->id;
         $attributes['building_id'] = Auth::user()->building_id;
+        $attributes['slug'] = str($request['title'])->slug();
 
         Report::create($attributes);
 
@@ -72,7 +73,7 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
-        if (! Gate::allows('allowEdit', $report)) {
+        if (!Gate::allows('allowEdit', $report)) {
             abort(403);
         }
         return view('reports.edit', ['report' => $report]);
@@ -86,14 +87,14 @@ class ReportController extends Controller
      */
     public function update(UpdateReportRequest $request, Report $report)
     {
-
         $attributes = $request->validated();
+        $attributes['slug'] = str($request['title'])->slug();
         $report->update($attributes);
 
         return redirect(route('reports'))->with('success', 'Report Updated!');
     }
 
-     /**
+    /**
      * delete Reports
      *
      * @param  mixed $report
@@ -105,5 +106,4 @@ class ReportController extends Controller
 
         return redirect(route('reports'))->with('success', 'Report Deleted!');
     }
-
 }

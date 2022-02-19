@@ -20,7 +20,6 @@
         <x-form.layout action="{{ route('reports.update', $report->slug) }}" method="PATCH">
 
             <x-form.input name="title" :value="old('title', $report->title)" />
-            <x-form.input name="slug" :value="old('slug', $report->slug)" />
             <x-form.input name="subject" :value="old('subject', $report->subject)" />
             <x-form.textarea name="body">{{ old('body', $report->body) }}</x-form.textarea>
 

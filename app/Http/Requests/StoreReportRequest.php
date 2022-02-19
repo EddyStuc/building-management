@@ -25,8 +25,7 @@ class StoreReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('reports', 'slug')],
+            'title' => ['required', Rule::unique('reports', 'title')],
             'subject' => 'required',
             'body' => 'required'
         ];
