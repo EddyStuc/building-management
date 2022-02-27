@@ -39,14 +39,14 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-                    {!! nl2br($report->body) !!}
+                    {{ $report->body }}
                 </div>
             </div>
             <section class="col-span-8 col-start-5 mt-10 space-y-6">
                 @include('reports._add-comment')
 
                 @foreach ($report->comments->reverse() as $comment)
-                    <x-post-comment  :comment="$comment" />
+                    <x-post-comment :comment="$comment" />
                 @endforeach
             </section>
         </article>

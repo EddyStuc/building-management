@@ -19,11 +19,11 @@
     <x-page-content-container>
 
         @allowEdit(Auth::user(), $noticeboardPost)
-            <div class="flex w-full justify-end">
-                <x-a-link-button href="{{ route('noticeboard.edit', $noticeboardPost->slug) }}">
-                    Edit your post
-                </x-a-link-button>
-            </div>
+        <div class="flex w-full justify-end">
+            <x-a-link-button href="{{ route('noticeboard.edit', $noticeboardPost->slug) }}">
+                Edit your post
+            </x-a-link-button>
+        </div>
         @endallowEdit
 
         <article class="max-w-4xl mx-auto md:grid md:grid-cols-12 gap-x-10 mt-4">
@@ -51,7 +51,7 @@
                 </h3>
 
                 <div class="space-y-4 text-lg leading-loose">
-                    {!! nl2br($noticeboardPost->body) !!}
+                    {{ $noticeboardPost->body }}
                 </div>
             </div>
         </article>

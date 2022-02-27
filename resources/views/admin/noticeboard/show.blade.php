@@ -7,7 +7,7 @@
             <div class="flex justify-between space-x-2">
                 <x-a-link-button :href="route('admin.noticeboard')">
                     <x-icon name="left-arrow" />
-                        Back to admin noticeboard
+                    Back to admin noticeboard
                 </x-a-link-button>
                 <x-a-link-button :href="route('admin.noticeboard.create')">
                     Create new post
@@ -39,7 +39,7 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-                    {!! nl2br($noticeboardPost->body) !!}
+                    {{ $noticeboardPost->body }}
                 </div>
             </div>
         </article>

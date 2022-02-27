@@ -18,7 +18,7 @@ class NoticeBoardPostFactory extends Factory
             'slug' => $this->faker->slug(),
             'title' => $this->faker->sentence(),
             'subject' => $this->faker->sentence(),
-            'body' => collect($this->faker->paragraphs(6))->map(fn($item) => "<p>{$item}</p>")->implode(''),
+            'body' => $this->faker->paragraphs(6, true),
         ];
     }
 }

@@ -18,7 +18,7 @@ class ContactMessage extends Model
         'deleted' => ContactMessageDeleted::class,
     ];
 
-     /**
+    /**
      * Relationship to the author that created
      *
      * @return void

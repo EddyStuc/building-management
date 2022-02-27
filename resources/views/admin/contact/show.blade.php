@@ -6,7 +6,7 @@
             </h2>
             <x-a-link-button :href="route('admin.contactMessages')">
                 <x-icon name="left-arrow" />
-                    Back to admin messages
+                Back to admin messages
             </x-a-link-button>
         </x-page-header-container>
     </x-slot>
@@ -38,7 +38,7 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-                    {!! nl2br($contactMessage->message) !!}
+                    {{ $contactMessage->message }}
                 </div>
             </div>
         </article>

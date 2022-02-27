@@ -16,7 +16,7 @@ class ContactMessageFactory extends Factory
         return [
             'slug' => $this->faker->slug(),
             'subject' => $this->faker->sentence(),
-            'message' => collect($this->faker->paragraphs(6))->map(fn($item) => "<p>{$item}</p>")->implode(''),
+            'message' => $this->faker->paragraphs(5, true),
             'phone' => $this->faker->phoneNumber(),
             'answered' => false
         ];

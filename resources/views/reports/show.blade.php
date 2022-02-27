@@ -19,11 +19,11 @@
     <x-page-content-container>
 
         @allowEdit(Auth::user(), $report)
-            <div class="flex w-full justify-end">
-                <x-a-link-button href="{{ route('reports.edit', $report->slug) }}">
-                    Edit your report
-                </x-a-link-button>
-            </div>
+        <div class="flex w-full justify-end">
+            <x-a-link-button href="{{ route('reports.edit', $report->slug) }}">
+                Edit your report
+            </x-a-link-button>
+        </div>
         @endallowEdit
 
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10 mt-4">
@@ -48,14 +48,14 @@
                 </h1>
 
                 <div class="space-y-4 lg:text-lg leading-loose">
-                    {!! nl2br($report->body) !!}
+                    {{ $report->body }}
                 </div>
             </div>
             <section class="col-span-8 col-start-5 mt-10 space-y-6">
                 @include('reports._add-comment')
 
                 @foreach ($report->comments->reverse() as $comment)
-                    <x-post-comment  :comment="$comment" />
+                    <x-post-comment :comment="$comment" />
                 @endforeach
             </section>
         </article>

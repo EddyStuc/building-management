@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateNoticeboardPostRequest;
 use App\Models\NoticeboardPost;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class NoticeboardPostController extends Controller

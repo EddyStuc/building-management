@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ReportController extends Controller
@@ -22,7 +20,6 @@ class ReportController extends Controller
     {
         $reports = Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
             : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
-
         return view('reports.index', compact('reports'));
     }
 

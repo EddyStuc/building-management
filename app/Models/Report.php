@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\SearchFilter;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class Report extends Model
 {
@@ -12,7 +14,13 @@ class Report extends Model
 
     protected $with = ['author'];
 
-     /**
+    public function isAdmin()
+    {
+        return Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
+            : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
+    }
+
+    /**
      * Relationship to the author that created
      *
      * @return belongsTo
