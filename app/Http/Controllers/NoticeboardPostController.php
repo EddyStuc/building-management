@@ -18,9 +18,7 @@ class NoticeboardPostController extends Controller
      */
     public function index(): View
     {
-        $noticeboardPosts = Gate::allows('admin') ? NoticeboardPost::latest()->filter(request(['search']))->paginate(9)
-            : Auth::user()->building->posts()->filter(request(['search']))->paginate(9);
-
+        $noticeboardPosts = (new NoticeboardPost())->showAllIfAdmin();
         return view('noticeboard.index', compact('noticeboardPosts'));
     }
 

@@ -18,8 +18,7 @@ class ReportController extends Controller
      */
     public function index(): View
     {
-        $reports = Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
-            : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
+        $reports = (new Report())->showAllIfAdmin();
         return view('reports.index', compact('reports'));
     }
 

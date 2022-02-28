@@ -14,7 +14,12 @@ class Report extends Model
 
     protected $with = ['author'];
 
-    public function isAdmin()
+    /**
+     * Determines if user is admin which displays all reports otherwise just displays reports from users building
+     *
+     * @return void
+     */
+    public function showAllIfAdmin()
     {
         return Gate::allows('admin') ? Report::latest()->filter(request(['search']))->paginate(10)
             : Auth::user()->building->reports()->filter(request(['search']))->paginate(10);
