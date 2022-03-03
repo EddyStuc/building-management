@@ -51,10 +51,11 @@ class NoticeboardPostController extends Controller
      */
     public function store(StoreNoticeboardPostRequest $request)
     {
-        $attributes = $request->validated();
-        $attributes['user_id'] = Auth::user()->id;
-        $attributes['building_id'] = Auth::user()->building_id;
-        $attributes['slug'] = str($request['title'])->slug();
+        $attributes = $request->safe()->merge([
+            'user_id' => Auth::user()->id,
+            'building_id' => Auth::user()->building_id,
+            'slug' => str($request['title'])->slug()
+        ])->all();
 
         NoticeboardPost::create($attributes);
 
@@ -83,8 +84,10 @@ class NoticeboardPostController extends Controller
      */
     public function update(UpdateNoticeboardPostRequest $request, NoticeboardPost $noticeboardPost)
     {
-        $attributes = $request->validated();
-        $attributes['slug'] = str($request['title'])->slug();
+        $attributes = $request->safe()->merge([
+            'slug' => str($request['title'])->slug()
+        ])->all();
+
         $noticeboardPost->update($attributes);
 
         return redirect(route('noticeboard'))->with('success', 'Post Updated!');

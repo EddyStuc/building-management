@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
@@ -16,7 +17,7 @@ class ReportController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
         $reports = (new Report())->showAllIfAdmin();
         return view('reports.index', compact('reports'));
@@ -50,11 +51,11 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-
-        $attributes = $request->validated();
-        $attributes['user_id'] = Auth::user()->id;
-        $attributes['building_id'] = Auth::user()->building_id;
-        $attributes['slug'] = str($request['title'])->slug();
+        $attributes = $request->safe()->merge([
+            'user_id' => Auth::user()->id,
+            'building_id' => Auth::user()->building_id,
+            'slug' => str($request['title'])->slug()
+        ])->all();
 
         Report::create($attributes);
 
@@ -83,8 +84,10 @@ class ReportController extends Controller
      */
     public function update(UpdateReportRequest $request, Report $report)
     {
-        $attributes = $request->validated();
-        $attributes['slug'] = str($request['title'])->slug();
+        $attributes = $request->safe()->merge([
+            'slug' => str($request['title'])->slug()
+        ])->all();
+
         $report->update($attributes);
 
         return redirect(route('reports'))->with('success', 'Report Updated!');

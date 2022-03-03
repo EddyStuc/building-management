@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\ContactMessage;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class ContactMessageController extends Controller
 {
@@ -26,10 +25,11 @@ class ContactMessageController extends Controller
      */
     public function store(StoreContactMessageRequest $request)
     {
-        $attributes = $request->validated();
-        $attributes['user_id'] = Auth::user()->id;
-        $attributes['building_id'] = Auth::user()->building_id;
-        $attributes['slug'] = str($request['subject'])->slug();
+        $attributes = $request->safe()->merge([
+            'user_id' => Auth::user()->id,
+            'building_id' => Auth::user()->building_id,
+            'slug' => str($request['subject'])->slug()
+        ])->all();
 
         ContactMessage::create($attributes);
 
